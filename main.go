@@ -74,6 +74,11 @@ func main() {
 			writer.Write(Value{typ: "string", str: ""})
 			continue
 		}
+
+		if command == "SET" || command == "HSET" {
+			aof.Write(value)
+		}
+
 		result := handler(args)
 		writer.Write(result)
 	}
